@@ -260,22 +260,60 @@ xml:base="http://diveintomark.org/">
 </feed>
 `
 
-// type TestContents struct {
-// 	input    io.Reader
-// 	output   Content
-// 	expected Content
-// }
+type TestContents struct {
+	input    io.Reader
+	output   Content
+	expected Content
+}
 
-// var expectedRSS091 = Content{
-// 	Source{"WriteTheWeb", "http://writetheweb.com", "News for web users that write back"},
-// 	[]Item{},
-// }
+var expectedRSS091 = Content{
+	Source: Source{
+		Title:          "WriteTheWeb",
+		URL:            "http://writetheweb.com",
+		Description:    "News for web users that write back",
+		Language:       "en-us",
+		Copyright:      "Copyright 2000, WriteTheWeb team.",
+		ManagingEditor: "editor@writetheweb.com",
+		WebMaster:      "webmaster@writetheweb.com",
+	},
+	Items: []Item{
+		Item{
+			Title:       "Giving the world a pluggable Gnutella",
+			URL:         "http://writetheweb.com/read.php?item=24",
+			Description: "WorldOS is a framework on which to build programs that work like Freenet or Gnutella -allowing distributed applications using peer-to-peer routing.",
+		},
+		Item{
+			Title:       "Syndication discussions hot up",
+			URL:         "http://writetheweb.com/read.php?item=23",
+			Description: "After a period of dormancy, the Syndication mailing list has become active again, with contributions from leaders in traditional media and Web syndication.",
+		},
+		Item{
+			Title:       "Personal web server integrates file sharing and messaging",
+			URL:         "http://writetheweb.com/read.php?item=22",
+			Description: "The Magi Project is an innovative project to create a combined personal web server and messaging system that enables the sharing and synchronization of information across desktop, laptop and palmtop devices.",
+		},
+		Item{
+			Title:       "Syndication and Metadata",
+			URL:         "http://writetheweb.com/read.php?item=21",
+			Description: "RSS is probably the best known metadata format around. RDF is probably one of the least understood. In this essay, published on my O'Reilly Network weblog, I argue that the next generation of RSS should be based on RDF.",
+		},
+		Item{
+			Title:       "UK bloggers get organised",
+			URL:         "http://writetheweb.com/read.php?item=20",
+			Description: "Looks like the weblogs scene is gathering pace beyond the shores of the US. There's now a UK-specific page on weblogs.com, and a mailing list at egroups.",
+		},
+		Item{
+			Title:       "Yournamehere.com more important than anything",
+			URL:         "http://writetheweb.com/read.php?item=19",
+			Description: "Whatever you're publishing on the web, your site name is the most valuable asset you have, according to Carl Steadman.",
+		},
+	},
+}
 
 func TestRead(t *testing.T) {
-	// var rss091, rss092, rss200, atom Content
-
-	// testCase := []TestContents{
-	// TestContents{bytes.NewReader(RSS091)},
-	// }
+	var rss091, rss092, rss200, atom Content
+	testCase := []TestContents{
+		TestContents{bytes.NewReader(RSS091), rss091, expectedRSS091},
+	}
 	t.Fatalf("test %v\n", RSS091)
 }
